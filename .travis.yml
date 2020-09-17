@@ -1,0 +1,16 @@
+language: csharp
+mono: latest
+dotnet: 3.1.200
+before_install:
+- sudo apt-get install nunit-console
+script:
+- dotnet restore
+- msbuild
+- dotnet test ./Test/bin/Debug/netcoreapp3.1/*.dll
+deploy:
+provider: heroku
+api_key:
+secure: 22ab038c-370a-4ade-b75c-a91d11d7a378
+app: urlcatalogapi
+on:
+repo: sprakash1431/UrlcatalogApi

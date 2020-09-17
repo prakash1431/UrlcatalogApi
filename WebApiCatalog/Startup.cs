@@ -59,6 +59,9 @@ namespace WebApiCatalog
             //userservice
             services.AddTransient<IUserSvc, UserSvc>();
 
+            //book mark service
+            services.AddTransient<IBookmarkCardSvc, BookMarkCardSvc>();
+
             /*---------------------------------------------------------------------------------------------------*/
             /*                             Functional SERVICE                                                    */
             /*---------------------------------------------------------------------------------------------------*/

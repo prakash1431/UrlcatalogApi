@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace WebApiCatalog.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200913215614_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20200917232413_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -257,6 +257,54 @@ namespace WebApiCatalog.Migrations
                         .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("ModelService.BookmarkCard", b =>
+                {
+                    b.Property<int>("BookmarkId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Application")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("ExpiryDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("FeatureTeam")
+                        .HasColumnType("text");
+
+                    b.Property<string>("IconName")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsCardExpired")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsCardValidationRequired")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("LongUrl")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Tribe")
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("shortUrl")
+                        .HasColumnType("text");
+
+                    b.HasKey("BookmarkId");
+
+                    b.ToTable("BookMarkCards");
                 });
 
             modelBuilder.Entity("ModelService.TokenModel", b =>

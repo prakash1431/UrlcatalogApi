@@ -1,4 +1,5 @@
-﻿using ModelService;
+﻿using Microsoft.AspNetCore.Http;
+using ModelService;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,5 +10,8 @@ namespace DataService.Interfaces
     public interface IBookmarkCardSvc
     {
         Task<bool> CreateBookMarkCard(BookmarkCard bookmarkCard);
+        //Task<bool> CreateBookMarkCard(IFormCollection formData);
+        Task<bool> ApproveBookMarkCard(BookmarkCard card);
+        Task<List<BookmarkCard>> GetAllcards();
     }
 }

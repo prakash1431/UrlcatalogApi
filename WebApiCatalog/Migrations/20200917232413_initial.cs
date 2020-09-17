@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace WebApiCatalog.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,6 +49,30 @@ namespace WebApiCatalog.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BookMarkCards",
+                columns: table => new
+                {
+                    BookmarkId = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserName = table.Column<string>(nullable: true),
+                    LongUrl = table.Column<string>(nullable: true),
+                    shortUrl = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    ExpiryDate = table.Column<DateTime>(nullable: true),
+                    Tribe = table.Column<string>(nullable: true),
+                    FeatureTeam = table.Column<string>(nullable: true),
+                    Application = table.Column<string>(nullable: true),
+                    IconName = table.Column<string>(nullable: true),
+                    IsCardValidationRequired = table.Column<bool>(nullable: false),
+                    IsCardExpired = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BookMarkCards", x => x.BookmarkId);
                 });
 
             migrationBuilder.CreateTable(
@@ -265,6 +289,9 @@ namespace WebApiCatalog.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "BookMarkCards");
 
             migrationBuilder.DropTable(
                 name: "DataProtectionKeys");
