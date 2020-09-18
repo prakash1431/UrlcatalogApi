@@ -6,7 +6,7 @@ before_install:
 script:
 - dotnet restore
 - msbuild
-- dotnet test ./UrlcatalogApiTest/bin/Debug/netcoreapp3.1/*.dll
+- dotnet test ./UrlcatalogApiTest/bin/Debug/netcoreapp3.1/UrlBookApiTest.Mock.dll
 deploy:
 provider: heroku
 api_key:

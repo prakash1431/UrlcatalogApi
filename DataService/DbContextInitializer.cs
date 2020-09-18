@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataService
 {
-    public class DbContextInitializer
+    public static class DbContextInitializer
     {
         public static async Task Initialize(ApplicationDbContext applicationDbContext, IFunctionalSvc functionalSvc)
         {

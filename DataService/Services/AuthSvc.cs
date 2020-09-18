@@ -27,7 +27,7 @@ namespace DataService.Services
         private readonly ApplicationDbContext _db;
         private readonly ICookieSvc _cookieSvc;
         private readonly IServiceProvider _provider;
-        private string[] UserRoles = new[] { "Administrator", "User" };
+        private readonly string[] UserRoles = new[] { "Administrator", "User" };
         private TokenValidationParameters validationParameters;
         private JwtSecurityTokenHandler handler;
         private string unProtectedToken;
@@ -60,9 +60,9 @@ namespace DataService.Services
             switch (model.GrantType)
             {
                 case "password":
-                    return await GenerateNewToken(model);
+                    return await GenerateNewToken(model).ConfigureAwait(false);
                 case "refresh_token":
-                    return await RefreshToken(model);
+                    return await RefreshToken(model).ConfigureAwait(false);
                 default:
                     // not supported - return a HTTP 401 (Unauthorized)
                     return CreateErrorResponseToken("Request Not Supported", HttpStatusCode.Unauthorized);
@@ -99,7 +99,7 @@ namespace DataService.Services
         private static TokenModel CreateRefreshToken(string clientId, string userId, int expireTime)
         {
 
-            return new TokenModel()
+            return new TokenModel
             {
                 ClientId = clientId,
                 UserId = userId,
@@ -122,9 +122,8 @@ namespace DataService.Services
                 if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
                 {
                     // Create & Return the access token which contains JWT and Refresh Token
-                    var accessToken = await CreateAccessToken(user);
+                    var accessToken = await CreateAccessToken(user).ConfigureAwait(false);
 
-                    var expireTime = accessToken.Expiration.Subtract(DateTime.UtcNow).TotalMinutes;
                     var refreshTokenExpireTime = accessToken.RefreshTokenExpiration.Subtract(DateTime.UtcNow).TotalMinutes;
 
                     // set cookie for jwt and refresh token
@@ -154,7 +153,7 @@ namespace DataService.Services
                 if (_appSettings.AllowSiteWideTokenRefresh)
                 {
                     // STEP 1: Validate JWT Token 
-                    var jwtValidationResult = await ValidateAuthTokenAsync();
+                    var jwtValidationResult = await ValidateAuthTokenAsync().ConfigureAwait(false);
 
                     if (jwtValidationResult.IsValid && jwtValidationResult.Message == "Token Expired")
                     {
@@ -196,8 +195,9 @@ namespace DataService.Services
                         var decryptedToken = unprotectedToken.ToString();
 
                         if (rt.Value != decryptedToken)
+                        {
                             return CreateErrorResponseToken("Request Not Supported", HttpStatusCode.Unauthorized);
-
+                        }
                         var accessToken = await CreateAccessToken(user);
                         var expireTime = accessToken.Expiration.Subtract(DateTime.UtcNow).TotalMinutes;
                         var refreshTokenExpireTime = accessToken.RefreshTokenExpiration.Subtract(DateTime.UtcNow).TotalMinutes;
