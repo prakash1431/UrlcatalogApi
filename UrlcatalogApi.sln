@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.travis.yml = .travis.yml
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UrlBookApiTest.Mock", "UrlcatalogApiTest\UrlBookApiTest.Mock.csproj", "{64B1CF90-0BE4-4F8D-9653-73244F2EA007}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{57DD0BE7-2260-4BDF-A76D-A7BA6B888FFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57DD0BE7-2260-4BDF-A76D-A7BA6B888FFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57DD0BE7-2260-4BDF-A76D-A7BA6B888FFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64B1CF90-0BE4-4F8D-9653-73244F2EA007}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64B1CF90-0BE4-4F8D-9653-73244F2EA007}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64B1CF90-0BE4-4F8D-9653-73244F2EA007}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64B1CF90-0BE4-4F8D-9653-73244F2EA007}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
