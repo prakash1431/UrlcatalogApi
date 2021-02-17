@@ -41,7 +41,7 @@ namespace WebApiCatalog.Controllers.Api.v1
 
             if (result)
             {
-                return Ok(new { Message = "Profiles updated Successfully!" });
+                return Ok(new { Message = "Test Profiles updated Successfully!" });
             }
 
             return BadRequest(new { Message = "Could not Update Profiles." });
